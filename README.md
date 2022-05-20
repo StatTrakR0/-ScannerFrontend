@@ -26,3 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Definitely needs to be changed
+
+1. Change file.service.ts
+2. Change port which you use in spring boot in this line (private server = 'http://localhost:8080';)
+3. 
