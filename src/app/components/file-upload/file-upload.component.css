@@ -1,0 +1,20 @@
+.text-block {
+margin: 40px;
+font-size:x-large;
+font-weight: bold;
+}
+
+.btn1{
+  display: inline-block; /* Строчно-блочный элемент */
+  background: #228B22; /* Серый цвет фона */
+  color: #fff; /* Белый цвет текста */
+  padding: 1rem 1.5rem; /* Поля вокруг текста */
+  text-decoration: none; /* Убираем подчёркивание */
+  border-radius: 3px; /* Скругляем уголки */
+  margin-top: 5%;
+  margin-left: 5%
+}
+
+.buttonClass{
+  margin-left: 25%
+}
