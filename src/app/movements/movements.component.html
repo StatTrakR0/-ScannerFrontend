@@ -1,0 +1,130 @@
+<div class="container table-responsive">
+  <button class="btn btn-md btn-outline-primary btn1" (click)="open(content)">
+  New Movement</button>
+  <table class="table table-bordered table-hover align-middle">
+    <thead class="table-dark">
+    <tr>
+      <th>Id</th>
+      <th>Sequence number of movement</th>
+      <th>Around x-axis</th>
+      <th>Around y-axis</th>   
+      <th>Around z-axis</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let movement of movements">
+      <td><span>{{movement.id}}</span></td>
+      <td><span>{{movement.num}}</span></td>
+      <td><span>{{movement.x}}°</span></td>
+      <td><span>{{movement.y}}°</span></td>
+      <td><span>{{movement.z}}°</span></td>
+      <td>
+        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, movement)">
+        Edit</button>
+        <button class="btn btn-sm btn-danger"(click)="openDelete(contentDelete, movement)">
+        Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Movement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <div class="form-group">
+        <label for="num">Number</label>
+        <div class="input-group">
+          <input id="num" name="num" class="form-control" type="number" min="1" ngModel required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="x">x</label>
+        <div class="input-group">
+          <input id="x" class="form-control" name="x" type="number" min="-360" max="360" ngModel required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="y">y</label>
+        <div class="input-group">
+          <input id="y" name="y" type="number" min="-360" max="360" class="form-control" ngModel required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="z">z</label>
+        <div class="input-group">
+          <input id="z" name="z" type="number" min="-360" max="360" class="form-control" ngModel required />
+        </div>
+      </div>
+      <div class="border text-center">
+        <button type="submit" data-dismiss="modal" class="btn btn-info" [disabled]="!f.form.valid">Create</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Update movement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" [formGroup]="editForm" novalidate>
+      <div class="form-group">
+        <label for="num">Number</label>
+        <div class="input-group">
+          <input formControlName="num" class="form-control"  type="number" min="1" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="x">x</label>
+        <div class="input-group">
+          <input formControlName="x" class="form-control" type="number" min="-360" max="360" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="y">y</label>
+        <div class="input-group">
+          <input formControlName="y" class="form-control" type="number" min="-360" max="360" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="z">z</label>
+        <div class="input-group">
+          <input formControlName="z" class="form-control" type="number" min="-360" max="360" required>
+        </div>
+      </div>
+      <div class="border text-center"> 
+        <button data-dismiss="modal" class="btn btn-info" (click)="onSave()" [disabled]="!f.form.valid">Save Changes</button> 
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h6>Are you sure you want to delete this record?</h6>
+    <div class="border text-center">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </div>
+  
+</ng-template>
